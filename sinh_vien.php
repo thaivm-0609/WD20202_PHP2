@@ -1,7 +1,8 @@
 <?php
 //khởi tạo class
 // final class SinhVien { :: không cho class khác kế thừa class này
-class SinhVien {
+// class SinhVien {
+abstract class SinhVien { //có ít nhất 1 abstract function
     public $maSV;
     public $hoTen;
     public $chuyenNganh;
@@ -35,6 +36,9 @@ class SinhVien {
         // echo $this->PI; =>lỗi undefined
         // echo self::PI; //truy suất hằng số
     }
+
+    //khai báo hàm trừu tượng: chỉ có khai báo tên, không có xử lý logic
+    abstract public function getTienQuyet();
 }
 
 //khởi tạo object: $tenObject = new TenClass();
@@ -60,6 +64,12 @@ class SinhVienBE extends SinhVien {
     public function getInfo() {
         parent::getInfo();
         echo $this->diemPhp2;
+    }
+
+    //class con kế thừa lại abstract class cha => bắt buộc phải ghi đè lại abstract function của class cha
+    public function getTienQuyet()
+    {
+        echo "PHP2";
     }
 }
 
