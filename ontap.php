@@ -10,7 +10,7 @@
  * + protected: chỉ có bản thân class đó và class con (đã kế thừa) có thể sử dụng
  * + private: chỉ có bản thân class đó được sử dụng
  * 
- * - Đa hình 
+ * - Đa hình: overriding
  * 
  * - Trừu tượng
  */

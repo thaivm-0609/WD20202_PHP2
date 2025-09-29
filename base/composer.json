@@ -1,0 +1,16 @@
+{
+    "name": "vuong/base",
+    "description": "Day la du an cua lop wd20202",
+    "autoload": {
+        "psr-4": {
+            "Vuong\\Base\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "thaivm-0609",
+            "email": "vuongthai95@gmail.com"
+        }
+    ],
+    "require": {}
+}

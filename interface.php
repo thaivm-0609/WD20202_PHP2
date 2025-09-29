@@ -1,6 +1,6 @@
 <?php 
 interface DaGiac {
-    // public $testBien; //trong Interface không chứa thuộc tính (biến)
+    //public $testBien; //trong Interface không chứa thuộc tính (biến)
     const PI = 3.14; //trong Interface chỉ được chứa hằng số
 
     /**
