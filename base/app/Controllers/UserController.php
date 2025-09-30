@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 //sử dụng từ khóa use + namespace của class cần nạp vào
-use App\Controller;
+// use App\Controller;
 
 //đặt biệt danh (alias) bằng từ khóa "as" nhằm 2 mục đích
 //+ rút gọn tên class
@@ -11,7 +11,16 @@ use App\Controller;
 // use App\Controllers\Admin\ProductController;
 // use App\Controllers\Client\ProductController as Client;
 
-class UserController extends Controller {
+class UserController {
+    //lấy danh sách người dùng
+    public function index() {
+        echo "Đây là hàm index trong UserController";
+    }
 
+    //lấy thông tin chi tiết người dùng
+    public function detail($id,$typeId) {
+        var_dump($id, $typeId);
+        die;
+    }
 }
 ?>
