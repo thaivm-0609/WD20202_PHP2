@@ -29,6 +29,7 @@ class Model {
         $this->connection->close(); //đóng kết nối với database
     }
 
+    //hàm lấy danh sách bản ghi
     public function getAll() //hàm lấy danh sách bản ghi
     {
         $queryBuilder = $this->connection->createQueryBuilder(); //khởi tạo queryBuilder
@@ -38,6 +39,7 @@ class Model {
         return $queryBuilder->fetchAllAssociative(); //lấy danh sách nhiều
     }
 
+    //hàm lấy thông tin chi tiết dựa vào id
     public function getOne($id) 
     {
         $queryBuilder = $this->connection->createQueryBuilder();
@@ -47,6 +49,23 @@ class Model {
             ->setParameter('id', $id);
 
         return $queryBuilder->fetchAssociative(); //lấy 1 bản ghi duy nhất
+    }
+
+    //hàm thêm bản ghi mới vào DB
+    public function insert(array $data) {
+        $this->connection->insert($this->table, $data);
+
+        return $this->connection->lastInsertId();
+    }
+
+    //hàm cập nhật bản ghi theo id
+    public function update($id, array $data) {
+        return $this->connection->update($this->table, $data, ['id' => $id]);
+    }
+
+    //hàm xóa bản ghi theo id
+    public function delete($id) {
+        return $this->connection->delete($this->table, ['id' => $id]);
     }
 }
 ?>

@@ -2,6 +2,8 @@
 
 <p>Tên contest: {{ $data['name'] }}</p>
 <p>Mô tả: {{ $data['description'] }}</p>
+<p>Ảnh: </p>
+<img src="{{ $_ENV['APP_URL'].$data['image'] }}" alt="">
 <p>Ngày bắt đầu: {{ $data['start'] }}</p>
 <p>Ngày kết thúc: {{ $data['end'] }}</p>
 <p>Ngày tạo: {{ $data['created_at'] }}</p>

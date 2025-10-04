@@ -31,7 +31,14 @@ $router->get('/users', UserController::class.'@index');
 // $router->get('/users/{id}/type/{typeId}', UserController::class.'@detail');
 
 $router->get('/contests', ContestController::class.'@index'); //lấy danh sách contest
-$router->get('/contests/{id}', ContestController::class.'@getDetail');//lấy thông tin chi tiết
+//thêm mới 
+$router->get('/contests/create', ContestController::class.'@create'); //hiển thị ra form thêm mới
+$router->post('/contests/store', ContestController::class.'@store'); //đẩy dữ liệu lên và thêm bản ghi
+//cập nhật
+$router->get('/contests/edit/{id}', ContestController::class.'@edit'); //hiển thị ra form thêm mới
+$router->post('/contests/update/{id}', ContestController::class.'@update'); //đẩy dữ liệu lên và thêm bản ghi
+$router->get('/contests/detail/{id}', ContestController::class.'@getDetail');//lấy thông tin chi tiết
+$router->get('/contests/delete/{id}', ContestController::class.'@delete'); //xóa bản ghi
 
 //B4: thực thi $router
 $router->run();

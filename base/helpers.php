@@ -11,4 +11,18 @@ if (!function_exists('view')) { //nếu chưa có hàm view thì tạo hàm
         echo $blade->run($view, $data); //$view: file giao diện được hiển thị ra
     }
 }
+
+if (!function_exists('redirect')) {
+    function redirect($path) {
+        header('Location: ' .$path);
+        exit;
+    }
+}
+
+if (!function_exists('notFound')) {
+    function notFound() {
+        header('HTTP/1.1 404 Not Found');
+        exit;
+    }
+}
 ?>

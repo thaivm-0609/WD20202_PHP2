@@ -19,6 +19,10 @@ class Contest extends Model {
 
         return $contest;
     } 
+
+    public function store($data) {
+        return $this->insert($data);
+    }
 }
 
 ?>
