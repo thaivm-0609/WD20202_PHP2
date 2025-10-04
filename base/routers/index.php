@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\ContestController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
 use Bramus\Router\Router; //B1: nạp package BramusRouter
@@ -27,7 +28,10 @@ $router->get('/', HomeController::class.'@index');
 $router->get('/home', HomeController::class.'@home');
 $router->get('/test', HomeController::class.'@test');
 $router->get('/users', UserController::class.'@index');
-$router->get('/users/{id}/type/{typeId}', UserController::class.'@detail');
+// $router->get('/users/{id}/type/{typeId}', UserController::class.'@detail');
+
+$router->get('/contests', ContestController::class.'@index'); //lấy danh sách contest
+$router->get('/contests/{id}', ContestController::class.'@getDetail');//lấy thông tin chi tiết
 
 //B4: thực thi $router
 $router->run();

@@ -14,13 +14,13 @@ class Model {
         //khai báo thông tin kết nối từ file .env
         $connectionInfo = [
             'dbname' => $_ENV['DB_NAME'],
-            'username' => $_ENV['DB_USERNAME'],
+            'user' => $_ENV['DB_USERNAME'],
             'password' => $_ENV['DB_PASSWORD'],
             'host' => $_ENV['DB_HOST'],
             'port' => $_ENV['DB_PORT'],
             'driver' => $_ENV['DB_DRIVER'],
         ];
-
+        
         $this->connection = DriverManager::getConnection($connectionInfo);
     }
 
@@ -35,7 +35,18 @@ class Model {
     
         $queryBuilder->select('*')->from($this->table);
 
-        return $queryBuilder->fetchAllAssociative();
+        return $queryBuilder->fetchAllAssociative(); //lấy danh sách nhiều
+    }
+
+    public function getOne($id) 
+    {
+        $queryBuilder = $this->connection->createQueryBuilder();
+        $queryBuilder->select('*')
+            ->from($this->table)
+            ->where('id = :id')
+            ->setParameter('id', $id);
+
+        return $queryBuilder->fetchAssociative(); //lấy 1 bản ghi duy nhất
     }
 }
 ?>
