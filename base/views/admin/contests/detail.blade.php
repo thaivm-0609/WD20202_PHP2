@@ -1,3 +1,10 @@
+@extends('admin.layouts.main')
+
+@section('title')
+Detail contest
+@endsection
+
+@section('content')
 <h1>Đây là trang thông tin chi tiết</h1>
 
 <p>Tên contest: {{ $data['name'] }}</p>
@@ -8,3 +15,4 @@
 <p>Ngày kết thúc: {{ $data['end'] }}</p>
 <p>Ngày tạo: {{ $data['created_at'] }}</p>
 <p>Ngày cập nhật: {{ $data['updated_at'] }}</p>
+@endsection

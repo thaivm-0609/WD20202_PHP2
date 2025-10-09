@@ -1,3 +1,10 @@
+@extends('admin.layouts.main')
+
+@section('title')
+Create contest
+@endsection
+
+@section('content')
 <h1>Đây là trang thêm mới</h1>
 
 <div>
@@ -29,3 +36,4 @@
         <button type="submit">Submit</button>
     </form>
 </div>
+@endsection

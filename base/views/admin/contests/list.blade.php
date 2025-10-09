@@ -1,6 +1,12 @@
+@extends('admin.layouts.main') 
 
+@section('title')
+List contest
+@endsection
+
+@section('content')
 <div>
-    <table>
+    <table class="table">
         <thead>
             <th>ID</th>
             <th>Name</th>
@@ -22,8 +28,8 @@
                 <td> {{ $contest['created_at'] }} </td>
                 <td> {{ $contest['updated_at'] }} </td>
                 <td>
-                    <a href="/contests/detail/{{ $contest['id'] }}">Detail</a>
-                    <a href="/contests/edit/{{ $contest['id'] }}">Edit</a>
+                    <a href="/contests/detail/{{ $contest['id'] }}" class="btn btn-warning">Detail</a>
+                    <a href="/contests/edit/{{ $contest['id'] }}" class="btn btn-success">Edit</a>
                     <a 
                         href="/contests/delete/{{ $contest['id'] }}"
                         onclick="return confirm('Bạn có chắc chắn không?')"
@@ -36,3 +42,4 @@
         </tbody>
     </table>
 </div>
+@endsection
