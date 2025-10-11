@@ -1,6 +1,6 @@
 <?php
 //khai báo namespace cho class UserController
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 //sử dụng từ khóa use + namespace của class cần nạp vào
 // use App\Controller;
