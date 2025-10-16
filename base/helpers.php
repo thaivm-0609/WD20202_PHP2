@@ -25,4 +25,30 @@ if (!function_exists('notFound')) {
         exit;
     }
 }
+
+if (!function_exists('middleware_auth')) {
+    function middleware_auth() {
+        //lấy đường dẫn ng dùng đang truy cập
+        $currentUrl = $_SERVER['REQUEST_URI'];
+        $adminRegex = '/^\/admin/'; //kiểm tra admin
+        $authRegex = '/^\/(login|signin|register|signup)$/'; //kiểm tra trang đăng nhập
+    
+        //kiểm tra ng dùng đăng nhập hay chưa
+        if (empty($_SESSION['user'])) {
+            if (preg_match($adminRegex, $currentUrl)) {
+                redirect('/login');
+            }
+        } else { //user đã đăng nhập rồi
+            //ko cho vào lại trang đăng ký đăng nhập nữa
+            if (preg_match($authRegex, $currentUrl)) {
+                redirect('/');
+            }
+
+            //check quyền
+            if (preg_match($adminRegex, $currentUrl) && $_SESSION['user']['role'] != 1) {
+                redirect('/login');
+            }
+        }
+    }
+}
 ?>

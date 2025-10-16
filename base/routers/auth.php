@@ -12,4 +12,8 @@ $router->post('/signin', AuthController::class . '@signin'); //gửi dữ liệu
 
 $router->get('/logout', AuthController::class . '@logout'); //đăng xuất
 
+
+$router->before('GET|POST', '/.*', function() {
+    middleware_auth();
+});
 ?>
