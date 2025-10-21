@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Controller;
 use App\Models\User;
+use Rakit\Validation\Validator;
 
-class AuthController {
+class AuthController extends Controller {
     private User $user;
 
     public function __construct()
@@ -19,17 +21,44 @@ class AuthController {
 
     public function signup()
     {
-        $data = $_POST;
+        try {
+            $data = $_POST;
         
-        if (!$this->user->checkExistEmail($data['email'])) {
-            //nếu email chưa tồn tại trong db thì mới lưu
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT); //mã hóa password
-            $data['role'] = 0; //role 0 là client
+            //validate data người dùng nhập vào
+            $validator = new Validator; //khởi tạo validator từ thư viện
+            //tạo biến $errors để lưu trữ lỗi của dữ liệu
+            $errors = $this->validate(
+                $validator,
+                $data,
+                [
+                    //cú pháp: trường dữ liệu => điều kiện validate
+                    'email' => ['required', 'email'], //email không được bỏ trống + đúng định dạng
+                    'password' => ['required', 'min:6', 'max:20'], //password không được bỏ trống + tối thiểu 6 ký tự
+                ]
+            );
+            //nếu như có lỗi validate => show thông báo lỗi
+            if (!empty($errors)) {
+                $_SESSION['status'] = false; 
+                $_SESSION['errors'] = $errors;
 
-            $this->user->insert($data);
+                redirect('/register'); //đẩy về trang đăng ký
+            } else {
+                if (!$this->user->checkExistEmail($data['email'])) {
+                    //nếu email chưa tồn tại trong db thì mới lưu
+                    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT); //mã hóa password
+                    $data['role'] = 0; //role 0 là client
 
-            redirect('/login');
+                    $this->user->insert($data);
+
+                    redirect('/login');
+                }
+            }
+        } catch (\Throwable $th) {
+            
+            $_SESSION['status'] = false;
+            $_SESSION['errors'] = ["Something went wrong"];
         }
+        
     }
 
     public function login()
